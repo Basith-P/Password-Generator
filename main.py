@@ -26,8 +26,10 @@ password_label.grid(row=3, column=0, sticky="w")
 # Entries
 website_entry = Entry(width=55)
 website_entry.grid(row=1, column=1, columnspan=2, sticky="w")
+website_entry.focus()
 email_entry = Entry(width=55)
 email_entry.grid(row=2, column=1, columnspan=2, sticky="w")
+email_entry.insert(0, "@gmail.com")
 password_entry = Entry(width=35)
 password_entry.grid(row=3, column=1, sticky="w")
 
