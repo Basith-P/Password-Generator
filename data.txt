@@ -9,3 +9,9 @@ fasdf | asdf@gmail.com |
 asdf | asdf@gmail.com | asdf
 asdf | asdf@gmail.com | asdf
 amazon | jamesbond@gmail.com | 007
+{
+    "asdf": {
+        "email": "asdss@gmail.com",
+        "password": "lb$s+i!9t0HCLM%O"
+    }
+}
