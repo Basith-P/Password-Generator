@@ -74,9 +74,33 @@ def save():
             password_entry.delete(0, END)
             website_entry.focus()
 
-        # ---------------------------- UI SETUP ------------------------------- #
+
+# ---------------------------- SEARCH PASSWORD ------------------------------- #
+
+def search_pass():
+    website = website_entry.get()
+    message = 'asdfasfd'
+
+    if website == "":
+        messagebox.showinfo(
+            title="Oops", message="Please enter a website name")
+        return
+
+    try:
+        with open("data.json", "r") as data_file:
+            data = json.load(data_file)
+    except FileNotFoundError:
+        message = 'No password stored for this site'
+    else:
+        if website in data:
+            message = f"Email: {data[website]['email']}\nPassword: {data[website]['password']}"
+        else:
+            message = 'No password stored for this site'
+    finally:
+        messagebox.showinfo(title=website, message=message)
 
 
+# ---------------------------- UI SETUP ------------------------------- #
 window = Tk()
 window.title("Password Generator")
 window.config(padx=20, pady=20)
@@ -95,8 +119,8 @@ password_label = Label(text="Password: ")
 password_label.grid(row=3, column=0, sticky="w")
 
 # Entries
-website_entry = Entry(width=55)
-website_entry.grid(row=1, column=1, columnspan=2, sticky="w")
+website_entry = Entry(width=35)
+website_entry.grid(row=1, column=1, sticky="w")
 website_entry.focus()
 email_entry = Entry(width=55)
 email_entry.grid(row=2, column=1, columnspan=2, sticky="w")
@@ -105,6 +129,8 @@ password_entry = Entry(width=35)
 password_entry.grid(row=3, column=1, sticky="w")
 
 # Buttons
+generate_btn = Button(text="Search", command=search_pass, width=15)
+generate_btn.grid(row=1, column=2, sticky="e")
 generate_btn = Button(text="Generate Password", command=generate_pass)
 generate_btn.grid(row=3, column=2, sticky="e")
 add_btn = Button(text="add", width=46, command=save)
